@@ -9,4 +9,5 @@ import org.springframework.stereotype.Service;
 public class RestaurantService {
 
     private final RestaurantRepository repo;
+    private final IdService idService;
 }

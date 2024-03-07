@@ -1,5 +1,6 @@
 package com.github.neuefische.backend.service;
 
+import com.github.neuefische.backend.model.AddRestaurantDto;
 import com.github.neuefische.backend.model.Restaurant;
 import com.github.neuefische.backend.repository.RestaurantRepository;
 import org.junit.jupiter.api.Test;
@@ -28,6 +29,24 @@ class RestaurantServiceTest {
         assertEquals(expected, actual);
         verify(repo).findAll();
     }
+
+    @Test
+    void addRestaurant_whenCalledWithRestaurant_ThenReturnRestaurant() {
+        //Given
+        AddRestaurantDto restaurant = new AddRestaurantDto("Burger King", "Hamburg");
+        Restaurant restaurantToSave = new Restaurant("Test-1", "Burger King", "Hamburg");
+
+        when(repo.save(any(Restaurant.class))).thenReturn(restaurantToSave);
+
+        //When
+        Restaurant actual = service.addRestaurant(restaurant);
+
+        //Then
+        verify(repo).save(any(Restaurant.class));
+        assertEquals(restaurantToSave, actual);
+
+    }
+
 
     @Test
     void getRestaurantById_whenCalledWithInvalidId_thenThrowNoSuchElementException(){

@@ -2,7 +2,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {Restaurant} from "../types/Restaurant.ts";
 import axios from "axios";
-import RestaurantCard from "./RestaurantCard.tsx";
+import "./RestaurantDetail.css"
 
 export default function RestaurantDetail() {
     const params = useParams()
@@ -26,8 +26,13 @@ export default function RestaurantDetail() {
 
     return (
         <>
-            <RestaurantCard restaurant={restaurant}/>
-            <button onClick={navigateToHome}>Back to home</button>
+            <h1>Details:</h1>
+            <div className={"RestaurantDetail"}>
+                <h2>{restaurant.title}</h2>
+                <h3>{restaurant.city}</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+            <button className="HomeButton" onClick={navigateToHome}>Back</button>
         </>
     );
 }

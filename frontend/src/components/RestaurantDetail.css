@@ -1,0 +1,23 @@
+.RestaurantDetail {
+    border: 1px solid #09097b;
+    border-radius: 8px;
+    padding-left: 10px;
+    margin-bottom: 24px;
+    background: beige;
+}
+
+.HomeButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid #09097b;
+    height: 32px;
+    border-radius: 8px;
+    background: beige;
+    cursor: pointer;
+}
+
+.HomeButton:hover{
+    background: #e1e1b1;
+}

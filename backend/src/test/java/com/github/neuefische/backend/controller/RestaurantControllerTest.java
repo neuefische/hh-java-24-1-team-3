@@ -1,6 +1,7 @@
 package com.github.neuefische.backend.controller;
 
 import com.github.neuefische.backend.model.Restaurant;
+import com.github.neuefische.backend.repository.RestaurantRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,6 +25,9 @@ class RestaurantControllerTest {
     @Autowired
     private MockMvc mvc;
 
+    @Autowired
+    private RestaurantRepository repo;
+
     @Test
     void getAllRestaurants_whenCalledInitially_thenReturnEmptyList() throws Exception {
         //Given
@@ -31,4 +36,22 @@ class RestaurantControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json("[]"));
     }
+
+    @Test
+    void getRestaurantById_whenCalledWithValidId_thenReturnRestaurantWithId() throws Exception{
+        //GIVEN
+        repo.save(new Restaurant("1","Okinii", "Cologne" ));
+
+        //WHEN & THEN
+        mvc.perform(MockMvcRequestBuilders.get("/api/restaurants/1"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json("""
+                                                                           {
+                                                                           "id": "1",
+                                                                           "title" : "Okinii",
+                                                                           "city" : "Cologne"
+                                                                           }
+                                                                           """));
+    }
+
 }

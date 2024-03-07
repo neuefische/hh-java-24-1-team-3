@@ -4,4 +4,9 @@
     padding-left: 10px;
     margin-bottom: 24px;
     background: beige;
+    cursor: pointer;
+}
+
+.RestaurantCard:hover {
+    background: #e1e1b1;
 }

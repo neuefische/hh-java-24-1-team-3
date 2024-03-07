@@ -44,7 +44,7 @@ class RestaurantServiceTest {
         Restaurant actual = service.getRestaurantById("1");
 
         //THEN
-        assertEquals(expected,actual);
         verify(repo).findById("1");
+        assertEquals(expected,actual);
     }
 }

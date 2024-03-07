@@ -7,8 +7,10 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
@@ -16,6 +18,9 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.web.servlet.function.RequestPredicates.contentType;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -33,8 +38,31 @@ class RestaurantControllerTest {
         //Given
         //When&Then
         mvc.perform(MockMvcRequestBuilders.get("/api/restaurants"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().json("[]"));
+                .andExpect(status().isOk())
+                .andExpect(content().json("[]"));
+    }
+
+    @Test
+    void addRestaurant_whenCalledWithRestaurant_thenReturnRestaurant() throws Exception {
+        //Given
+
+        //When&Then
+        mvc.perform(post("/api/restaurants")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                            {
+                                "title": "Burger King",
+                                "city": "Hamburg"
+                            }                           
+                        """))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        {
+                            "title": "Burger King",
+                            "city": "Hamburg"
+                        }
+                        """))
+                .andExpect(jsonPath("$.id").isNotEmpty());
     }
 
     @Test

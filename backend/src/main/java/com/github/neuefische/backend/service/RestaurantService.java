@@ -1,5 +1,6 @@
 package com.github.neuefische.backend.service;
 
+import com.github.neuefische.backend.model.AddRestaurantDto;
 import com.github.neuefische.backend.model.Restaurant;
 import com.github.neuefische.backend.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,14 @@ public class RestaurantService {
 
     public List<Restaurant> getAllRestaurants() {
         return repo.findAll();
+    }
+
+    public Restaurant addRestaurant(AddRestaurantDto restaurant) {
+
+        Restaurant restaurantToSave = new Restaurant(null, restaurant.title(), restaurant.city());
+
+        return repo.save(restaurantToSave);
+
     }
 
     public Restaurant getRestaurantById(String id) {

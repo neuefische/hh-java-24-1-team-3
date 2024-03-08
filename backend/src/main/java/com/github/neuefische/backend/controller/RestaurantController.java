@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/restaurants")
@@ -34,4 +37,15 @@ public class RestaurantController {
     public Restaurant getRestaurantById(@PathVariable String id){
         return service.getRestaurantById(id);
     }
+
+    @DeleteMapping("/{id}")
+public void deleteRestaurantById(@PathVariable String id){
+        service.deleteRestaurantById(id);
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public void handleNoSuchElementException() {
+    }
+
 }

@@ -66,4 +66,23 @@ class RestaurantServiceTest {
         verify(repo).findById("1");
         assertEquals(expected,actual);
     }
+
+    @Test
+    void deleteRestaurantByID_whenCalledWithValidId_thenDeleteRestaurant(){
+        //GIVEN
+        String id = "2";
+        Restaurant expected = new Restaurant(id, "7 Paintings", "Wuppertal");
+        when(repo.findById(id)).thenReturn(Optional.of(expected));
+
+        //WHEN
+        service.deleteRestaurantById(id);
+
+        //THEN
+        verify(repo).deleteById(id);
+    }
+
+    @Test
+    void deleteRestaurantByID_whenCalledWithInvalidId_thenThrowNoSuchElementException() {
+        assertThrows(NoSuchElementException.class, () -> {service.deleteRestaurantById("123");});
+    }
 }

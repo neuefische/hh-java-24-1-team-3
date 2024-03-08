@@ -17,7 +17,7 @@ export default function App() {
         || restaurant.city.toLowerCase().includes(searchText.toLowerCase()))
 
     useEffect(() => {
-        fetchData();
+        fetchRestaurants();
     }, []);
 
     const fetchData = () => {

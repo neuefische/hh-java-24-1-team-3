@@ -31,11 +31,11 @@ export default function RestaurantDetail() {
 
     useEffect(
         fetchRestaurant,
-        []
+        [params.id]
     )
 
     return (
-        <>
+        <div className={"DetailPage"}>
             <h1>Details:</h1>
             <div className={"RestaurantDetail"}>
                 <h2>{restaurant.title}</h2>
@@ -45,6 +45,6 @@ export default function RestaurantDetail() {
             <button className="HomeButton" onClick={navigateToHome}>Back</button>
                 <button className="DeleteButton" onClick={deleteRestaurant}>Delete</button>
             </div>
-        </>
+        </div>
     );
 }

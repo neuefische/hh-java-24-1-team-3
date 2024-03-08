@@ -20,7 +20,7 @@ export default function App() {
         fetchRestaurants();
     }, []);
 
-    const fetchData = () => {
+    const fetchRestaurants = () => {
         axios.get('/api/restaurants')
             .then(response => {
                 setRestaurants(response.data);

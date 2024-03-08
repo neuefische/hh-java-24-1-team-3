@@ -46,6 +46,7 @@ public void deleteRestaurantById(@PathVariable String id){
     @ExceptionHandler(NoSuchElementException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public void handleNoSuchElementException() {
+        // This method is empty because it is sufficient to return a 404 status.
     }
 
 }

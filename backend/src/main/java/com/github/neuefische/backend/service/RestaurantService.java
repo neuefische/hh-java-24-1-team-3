@@ -34,10 +34,6 @@ public class RestaurantService {
 
     public void deleteRestaurantById(String id) {
         Restaurant restaurant = getRestaurantById(id);
-        if (restaurantOptional.isPresent()) {
-            repo.deleteById(id);
-        } else {
-            throw new NoSuchElementException("Element with Id: " + id +" not found");
-        }
+       repo.delete(restaurant);
     }
 }

@@ -35,7 +35,7 @@ export default function RestaurantDetail() {
     )
 
     return (
-        <div className={"DetailPage"}>
+        <div className={"DetailRestaurantPage"}>
             <h1>Details:</h1>
             <div className={"RestaurantDetail"}>
                 <h2>{restaurant.title}</h2>

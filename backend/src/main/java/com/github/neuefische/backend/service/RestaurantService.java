@@ -33,7 +33,7 @@ public class RestaurantService {
     }
 
     public void deleteRestaurantById(String id) {
-        Optional<Restaurant> restaurantOptional = repo.findById(id);
+        Restaurant restaurant = getRestaurantById(id);
         if (restaurantOptional.isPresent()) {
             repo.deleteById(id);
         } else {

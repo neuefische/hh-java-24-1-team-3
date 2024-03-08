@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,5 +30,14 @@ public class RestaurantService {
 
     public Restaurant getRestaurantById(String id) {
         return repo.findById(id).orElseThrow(() -> new NoSuchElementException("Element with Id: " + id +" not found"));
+    }
+
+    public void deleteRestaurantById(String id) {
+        Optional<Restaurant> restaurantOptional = repo.findById(id);
+        if (restaurantOptional.isPresent()) {
+            repo.deleteById(id);
+        } else {
+            throw new NoSuchElementException("Element with Id: " + id +" not found");
+        }
     }
 }

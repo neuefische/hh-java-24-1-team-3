@@ -82,4 +82,26 @@ class RestaurantControllerTest {
                                                                            """));
     }
 
+    @Test
+    void deleteRestaurantById_whenCalledWithValidId_thenStatusIsOk() throws Exception {
+        // Given
+        String id = "2";
+        repo.save(new Restaurant(id, "7 Paintings", "Wuppertal"));
+
+        // When & Then
+        mvc.perform(MockMvcRequestBuilders.delete("/api/restaurants/" + id))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        assertFalse(repo.findById(id).isPresent());
+    }
+
+    @Test
+    void deleteRestaurantById_whenCalledWithInvalidId_thenThrowException() throws Exception {
+        // Given
+        String invalidId = "123";
+
+        // When & Then
+        mvc.perform(MockMvcRequestBuilders.delete("/api/restaurants/" + invalidId))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
 }

@@ -1,0 +1,19 @@
+.HeaderComponent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #e1e1b1;
+    margin-bottom: 16px;
+}
+
+.Wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.Logo {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    padding: 16px;
+}

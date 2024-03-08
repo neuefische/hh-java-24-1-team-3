@@ -78,7 +78,7 @@ class RestaurantServiceTest {
         service.deleteRestaurantById(id);
 
         //THEN
-        verify(repo).deleteById(id);
+        verify(repo).delete(expected);
     }
 
     @Test

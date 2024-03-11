@@ -49,7 +49,7 @@ export default function App() {
             <Route path={"/"} element={
                 filteredRestaurants.length > 0
                     ?
-                    <RestaurantOverview restaurants={filteredRestaurants}/>
+                    <RestaurantOverview restaurants={filteredRestaurants} fetchRestaurants={fetchRestaurants}/>
                     :
                     <h1>No restaurants found</h1>
             }/>

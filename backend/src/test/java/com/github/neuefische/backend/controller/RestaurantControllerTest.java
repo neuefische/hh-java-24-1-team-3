@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -48,12 +49,11 @@ class RestaurantControllerTest {
                             {
                                 "title": "Burger King",
                                         "city": "Hamburg",
-                                        "cuisine": "Fast Food",
+                                            "cuisine": "Fast Food",
                                         "address": {
                                             "address": "Reeperbahn",
                                             "number": "7"
-                                        }
-                                    }                          
+                                        }}
                         """))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
@@ -117,5 +117,29 @@ class RestaurantControllerTest {
         // When & Then
         mvc.perform(MockMvcRequestBuilders.delete("/api/restaurants/" + invalidId))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    @Test
+    void editRestaurant_whenCalledWithCityCologne_thenReturnUpdatedRestaurantWithCityCologne() throws Exception {
+        //GIVEN
+        repo.save(new Restaurant("1", "Okinii", "Hamburg"));
+
+        //
+        mvc.perform(put("/api/restaurants/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                "title" : "Okinii",
+                                "city" : "Cologne"
+                                }
+                                """))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        {
+                        "id" : "1",
+                        "title" : "Okinii",
+                        "city" : "Cologne"
+                        }
+                        """));
     }
 }

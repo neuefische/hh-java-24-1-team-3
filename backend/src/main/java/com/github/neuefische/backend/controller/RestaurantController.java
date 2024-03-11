@@ -1,7 +1,7 @@
 package com.github.neuefische.backend.controller;
 
-import com.github.neuefische.backend.model.AddRestaurantDto;
 import com.github.neuefische.backend.model.Restaurant;
+import com.github.neuefische.backend.model.RestaurantDto;
 import com.github.neuefische.backend.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ public class RestaurantController {
     }
 
     @PostMapping
-    public Restaurant addRestaurant(@RequestBody AddRestaurantDto restaurant) {
+    public Restaurant addRestaurant(@RequestBody RestaurantDto restaurant) {
         return service.addRestaurant(restaurant);
     }
 
@@ -36,6 +36,11 @@ public class RestaurantController {
     @DeleteMapping("/{id}")
 public void deleteRestaurantById(@PathVariable String id){
         service.deleteRestaurantById(id);
+    }
+
+    @PutMapping("/{id}")
+    public Restaurant editRestaurant(@PathVariable String id, @RequestBody RestaurantDto restaurant) {
+        return service.editRestaurantById(id, restaurant);
     }
 
     @ExceptionHandler(NoSuchElementException.class)

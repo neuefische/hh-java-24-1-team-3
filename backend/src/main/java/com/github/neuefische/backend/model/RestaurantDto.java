@@ -1,6 +1,6 @@
 package com.github.neuefische.backend.model;
 
-public record AddRestaurantDto(
+public record RestaurantDto(
         String title,
         String city,
         String cuisine,

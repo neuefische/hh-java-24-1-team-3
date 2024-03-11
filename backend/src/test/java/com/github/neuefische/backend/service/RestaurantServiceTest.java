@@ -1,7 +1,7 @@
 package com.github.neuefische.backend.service;
 
-import com.github.neuefische.backend.model.AddRestaurantDto;
 import com.github.neuefische.backend.model.Restaurant;
+import com.github.neuefische.backend.model.RestaurantDto;
 import com.github.neuefische.backend.model.RestaurantAddress;
 import com.github.neuefische.backend.repository.RestaurantRepository;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
 class RestaurantServiceTest {
 
     private final RestaurantRepository repo = mock(RestaurantRepository.class);
-    private RestaurantService service = new RestaurantService(repo);
+    private final RestaurantService service = new RestaurantService(repo);
 
     @Test
     void getAllRestaurants_whenCalledInitially_ThenReturnEmptyList() {
@@ -36,7 +36,7 @@ class RestaurantServiceTest {
     void addRestaurant_whenCalledWithRestaurant_ThenReturnRestaurant() {
         //Given
         RestaurantAddress address = new RestaurantAddress("Reeperbahn", "7");
-        AddRestaurantDto restaurant = new AddRestaurantDto("Burger King", "Hamburg", "Fast Food", address);
+        RestaurantDto restaurant = new RestaurantDto("Burger King", "Hamburg", "Fast Food", address);
         Restaurant restaurantToSave = new Restaurant("Test-1", "Burger King", "Hamburg", "Fast Food", address);
 
         when(repo.save(any(Restaurant.class))).thenReturn(restaurantToSave);
@@ -53,7 +53,7 @@ class RestaurantServiceTest {
 
     @Test
     void getRestaurantById_whenCalledWithInvalidId_thenThrowNoSuchElementException(){
-        assertThrows(NoSuchElementException.class, () -> {service.getRestaurantById("123");});
+        assertThrows(NoSuchElementException.class, () -> service.getRestaurantById("123"));
     }
 
     @Test
@@ -86,6 +86,23 @@ class RestaurantServiceTest {
 
     @Test
     void deleteRestaurantByID_whenCalledWithInvalidId_thenThrowNoSuchElementException() {
-        assertThrows(NoSuchElementException.class, () -> {service.deleteRestaurantById("123");});
+        assertThrows(NoSuchElementException.class, () -> service.deleteRestaurantById("123"));
+    }
+
+    @Test
+    void editRestaurantById_whenCalledWithCityCologne_thenReturnUpdatedRestaurantWithCityCologne() {
+        //GIVEN
+        RestaurantDto restaurant = new RestaurantDto("Hells Kitchen", "Cologne");
+        Restaurant expected = new Restaurant("1", "Hells Kitchen", "Cologne");
+        when(repo.findById("1")).thenReturn(Optional.of(expected));
+        when(repo.save(expected)).thenReturn(expected);
+
+        //WHEN
+        Restaurant actual = service.editRestaurantById("1", restaurant);
+
+        //
+        verify(repo).findById("1");
+        verify(repo).save(expected);
+        assertEquals(expected, actual);
     }
 }

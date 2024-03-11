@@ -1,7 +1,7 @@
 package com.github.neuefische.backend.service;
 
-import com.github.neuefische.backend.model.AddRestaurantDto;
 import com.github.neuefische.backend.model.Restaurant;
+import com.github.neuefische.backend.model.RestaurantDto;
 import com.github.neuefische.backend.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class RestaurantService {
         return repo.findAll();
     }
 
-    public Restaurant addRestaurant(AddRestaurantDto restaurant) {
+    public Restaurant addRestaurant(RestaurantDto restaurant) {
 
         Restaurant restaurantToSave = new Restaurant(null, restaurant.title(), restaurant.city(), restaurant.cuisine(), restaurant.address());
 
@@ -35,5 +35,12 @@ public class RestaurantService {
     public void deleteRestaurantById(String id) {
         Restaurant restaurant = getRestaurantById(id);
        repo.delete(restaurant);
+    }
+
+    public Restaurant editRestaurantById(String id, RestaurantDto restaurant) {
+        Restaurant restaurantToUpdate = getRestaurantById(id);
+        return repo.save(restaurantToUpdate
+                .withTitle(restaurant.title())
+                .withCity(restaurant.city()));
     }
 }

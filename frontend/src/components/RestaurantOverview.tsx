@@ -2,9 +2,12 @@ import {Restaurant} from "../types/Restaurant.ts";
 import RestaurantCard from "./RestaurantCard.tsx";
 
 type RestaurantOverviewProps = {
-    restaurants: Restaurant[]
+    restaurants: Restaurant[],
+    fetchRestaurants: () => void
 }
 export default function RestaurantOverview(props: Readonly<RestaurantOverviewProps>) {
+
+    props.fetchRestaurants()
 
     return (
         <div>

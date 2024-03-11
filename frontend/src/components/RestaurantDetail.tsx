@@ -1,12 +1,19 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {Restaurant} from "../types/Restaurant.ts";
+import {Restaurant, RestaurantAddress} from "../types/Restaurant.ts";
 import axios from "axios";
 import "./RestaurantDetail.css"
 
 export default function RestaurantDetail() {
     const params = useParams()
-    const[restaurant, setRestaurant] = useState<Restaurant>({id:"", title:"", city:""})
+    const [restaurantAddress, setRestaurantAddress] = useState<RestaurantAddress>({address: "", number: ""});
+    const [restaurant, setRestaurant] = useState<Restaurant>({
+        id: "",
+        title: "",
+        city: "",
+        cuisine: "",
+        address: restaurantAddress
+    })
     const navigate = useNavigate()
 
     function navigateToHome(){
@@ -25,7 +32,10 @@ export default function RestaurantDetail() {
 
     function fetchRestaurant(){
         axios.get("/api/restaurants/" + params.id)
-            .then((response) => setRestaurant(response.data))
+            .then((response) => {
+                setRestaurantAddress(response.data.address);
+                setRestaurant(response.data);
+            })
             .catch((error) => console.log(error.message))
     }
 
@@ -40,6 +50,8 @@ export default function RestaurantDetail() {
             <div className={"RestaurantDetail"}>
                 <h2>{restaurant.title}</h2>
                 <h3>{restaurant.city}</h3>
+                <h3>{restaurant.cuisine}</h3>
+                <h3>{restaurant.address.address}</h3>
             </div>
             <div className={"ButtonWrapper"}>
             <button className="HomeButton" onClick={navigateToHome}>Back</button>

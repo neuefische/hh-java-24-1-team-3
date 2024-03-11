@@ -115,6 +115,7 @@ export default function NewRestaurantForm() {
                     maxLength={100}
                     required={true}
                 />
+                {errors.city && <p>{errors.city}</p>}
             </label>
             <label>Cuisine:
                 <input
@@ -124,6 +125,7 @@ export default function NewRestaurantForm() {
                     maxLength={50}
                     required={true}
                 />
+                {errors.cuisine && <p>{errors.cuisine}</p>}
             </label>
             <div className={"address-wrapper"}>
                 <label>Address:
@@ -137,6 +139,7 @@ export default function NewRestaurantForm() {
                         maxLength={100}
                         required={true}
                     />
+                    {errors.address && <p>{errors.address.address}</p>}
                 </label>
                 <label>Number:
                     <input
@@ -149,6 +152,7 @@ export default function NewRestaurantForm() {
                         maxLength={5}
                         required={true}
                     />
+                    {errors.address && <p>{errors.address.number}</p>}
                 </label>
             </div>
             <button type={"submit"}>Add restaurant</button>

@@ -74,7 +74,6 @@ export default function NewRestaurantForm() {
                         }
                         errors.address[currentError.path.split('.')[1]] = currentError.message;
                     } else {
-                        // @ts-ignore
                         errors[currentError.path] = currentError.message;
                     }
                 });

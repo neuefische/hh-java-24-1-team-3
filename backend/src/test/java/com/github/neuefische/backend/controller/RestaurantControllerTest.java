@@ -1,26 +1,21 @@
 package com.github.neuefische.backend.controller;
 
 import com.github.neuefische.backend.model.Restaurant;
+import com.github.neuefische.backend.model.RestaurantAddress;
 import com.github.neuefische.backend.repository.RestaurantRepository;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.web.servlet.function.RequestPredicates.contentType;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -52,14 +47,24 @@ class RestaurantControllerTest {
                         .content("""
                             {
                                 "title": "Burger King",
-                                "city": "Hamburg"
-                            }                           
+                                        "city": "Hamburg",
+                                        "cuisine": "Fast Food",
+                                        "address": {
+                                            "address": "Reeperbahn",
+                                            "number": "7"
+                                        }
+                                    }                          
                         """))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
                         {
                             "title": "Burger King",
-                            "city": "Hamburg"
+                            "city": "Hamburg",
+                            "cuisine": "Fast Food",
+                            "address": {
+                                "address": "Reeperbahn",
+                                "number": "7"
+                            }
                         }
                         """))
                 .andExpect(jsonPath("$.id").isNotEmpty());
@@ -68,7 +73,9 @@ class RestaurantControllerTest {
     @Test
     void getRestaurantById_whenCalledWithValidId_thenReturnRestaurantWithId() throws Exception{
         //GIVEN
-        repo.save(new Restaurant("1","Okinii", "Cologne" ));
+        RestaurantAddress address = new RestaurantAddress("Hohenzollernring", "22");
+        Restaurant restaurant = new Restaurant("1", "Okinii", "Cologne", "Sushi", address);
+        repo.save(restaurant);
 
         //WHEN & THEN
         mvc.perform(MockMvcRequestBuilders.get("/api/restaurants/1"))
@@ -77,7 +84,12 @@ class RestaurantControllerTest {
                                                                            {
                                                                            "id": "1",
                                                                            "title" : "Okinii",
-                                                                           "city" : "Cologne"
+                        "city" : "Cologne",
+                         "cuisine" : "Sushi",
+                         "address" : {
+                             "address" : "Hohenzollernring",
+                             "number" : "22"
+                             }
                                                                            }
                                                                            """));
     }
@@ -86,7 +98,9 @@ class RestaurantControllerTest {
     void deleteRestaurantById_whenCalledWithValidId_thenStatusIsOk() throws Exception {
         // Given
         String id = "2";
-        repo.save(new Restaurant(id, "7 Paintings", "Wuppertal"));
+        RestaurantAddress address = new RestaurantAddress("Döppersberg", "50");
+        Restaurant restaurant = new Restaurant(id, "7 Paintings", "Wuppertal", "Italian", address);
+        repo.save(restaurant);
 
         // When & Then
         mvc.perform(MockMvcRequestBuilders.delete("/api/restaurants/" + id))

@@ -1,16 +1,18 @@
 import {FormEvent, useState} from "react";
 import "./NewRestaurantForm.css"
 import axios from "axios";
-
+import {useNavigate} from "react-router-dom";
 
 
 export default function NewRestaurantForm() {
 
     const [title, setTitle] = useState("")
     const [city, setCity] = useState("")
+    const navigate = useNavigate()
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        navigate("/")
     };
 
     function saveNewRestaurant() {
@@ -21,6 +23,7 @@ export default function NewRestaurantForm() {
                 title: title,
                 city: city
         })
+
     }
 
 

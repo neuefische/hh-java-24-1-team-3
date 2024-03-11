@@ -52,6 +52,7 @@ export default function RestaurantDetail() {
                 <h3>{restaurant.city}</h3>
                 <h3>{restaurant.cuisine}</h3>
                 <h3>{restaurant.address.address}</h3>
+                <h3>{restaurant.address.number}</h3>
             </div>
             <div className={"ButtonWrapper"}>
             <button className="HomeButton" onClick={navigateToHome}>Back</button>

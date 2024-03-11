@@ -60,6 +60,9 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
             </div>
             <div className={"ButtonWrapper"}>
             <button className="HomeButton" onClick={navigateToHome}>Back</button>
+                <button className="HomeButton"
+                        onClick={() => navigate("/restaurants/" + restaurant.id + "/edit")}>Edit
+                </button>
                 <button className="DeleteButton" onClick={deleteRestaurant}>Delete</button>
             </div>
         </div>

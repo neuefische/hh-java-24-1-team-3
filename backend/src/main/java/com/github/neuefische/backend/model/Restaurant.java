@@ -6,6 +6,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public record Restaurant(
         String id,
         String title,
-        String city
+        String city,
+        String cuisine,
+        RestaurantAddress address
 ) {
 }

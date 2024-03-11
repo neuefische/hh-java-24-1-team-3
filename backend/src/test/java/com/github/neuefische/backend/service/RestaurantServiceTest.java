@@ -2,6 +2,7 @@ package com.github.neuefische.backend.service;
 
 import com.github.neuefische.backend.model.AddRestaurantDto;
 import com.github.neuefische.backend.model.Restaurant;
+import com.github.neuefische.backend.model.RestaurantAddress;
 import com.github.neuefische.backend.repository.RestaurantRepository;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 class RestaurantServiceTest {
@@ -33,8 +35,9 @@ class RestaurantServiceTest {
     @Test
     void addRestaurant_whenCalledWithRestaurant_ThenReturnRestaurant() {
         //Given
-        AddRestaurantDto restaurant = new AddRestaurantDto("Burger King", "Hamburg");
-        Restaurant restaurantToSave = new Restaurant("Test-1", "Burger King", "Hamburg");
+        RestaurantAddress address = new RestaurantAddress("Reeperbahn", "7");
+        AddRestaurantDto restaurant = new AddRestaurantDto("Burger King", "Hamburg", "Fast Food", address);
+        Restaurant restaurantToSave = new Restaurant("Test-1", "Burger King", "Hamburg", "Fast Food", address);
 
         when(repo.save(any(Restaurant.class))).thenReturn(restaurantToSave);
 
@@ -56,7 +59,7 @@ class RestaurantServiceTest {
     @Test
     void getRestaurantById_whenCalledWithValidId_thenRestaurantWithId(){
         //GIVEN
-        Restaurant expected = new Restaurant("1","Okinii", "Cologne" );
+        Restaurant expected = new Restaurant("1", "Okinii", "Cologne", "Sushi", new RestaurantAddress("Hohenzollernring", "60"));
         when(repo.findById("1")).thenReturn(Optional.of(expected));
 
         //WHEN
@@ -71,7 +74,7 @@ class RestaurantServiceTest {
     void deleteRestaurantByID_whenCalledWithValidId_thenDeleteRestaurant(){
         //GIVEN
         String id = "2";
-        Restaurant expected = new Restaurant(id, "7 Paintings", "Wuppertal");
+        Restaurant expected = new Restaurant(id, "7 Paintings", "Wuppertal", "Italian", new RestaurantAddress("Hofaue", "51"));
         when(repo.findById(id)).thenReturn(Optional.of(expected));
 
         //WHEN

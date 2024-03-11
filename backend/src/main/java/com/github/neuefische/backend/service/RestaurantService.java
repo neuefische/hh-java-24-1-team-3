@@ -22,7 +22,7 @@ public class RestaurantService {
 
     public Restaurant addRestaurant(AddRestaurantDto restaurant) {
 
-        Restaurant restaurantToSave = new Restaurant(null, restaurant.title(), restaurant.city());
+        Restaurant restaurantToSave = new Restaurant(null, restaurant.title(), restaurant.city(), restaurant.cuisine(), restaurant.address());
 
         return repo.save(restaurantToSave);
 

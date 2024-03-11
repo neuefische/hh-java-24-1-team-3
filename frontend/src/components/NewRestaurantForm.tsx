@@ -30,7 +30,7 @@ const formDataSchema = yup.object().shape({
     cuisine: yup.string().required('Cuisine is required').min(3, 'Cuisine must be at least 3 characters').max(50, 'Cuisine must be at most 50 characters'),
     address: yup.object().shape({
         address: yup.string().required('Address is required').min(3, 'Address must be at least 3 characters').max(100, 'Address must be at most 100 characters'),
-        number: yup.string().required('Number is required').min(1, 'Number must be at least 1 character').max(5, 'Number must be at most 5 characters').matches(/^'\d'+$/, 'Number must be a number')
+        number: yup.string().required('Number is required').min(1, 'Number must be at least 1 character').max(5, 'Number must be at most 5 characters')
     })
 });
 

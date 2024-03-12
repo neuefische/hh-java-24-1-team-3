@@ -48,3 +48,19 @@
 .DeleteButton:hover {
     background: #e1e1b1;
 }
+
+.EditButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid #09097b;
+    height: 32px;
+    border-radius: 8px;
+    background: beige;
+    cursor: pointer;
+}
+
+.EditButton:hover {
+    background: #e1e1b1;
+}

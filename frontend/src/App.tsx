@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 import {Restaurant} from "./types/Restaurant.ts";
 import axios from "axios";
 import SearchComponent from "./components/SearchComponent.tsx";
+import RestaurantEdit from "./components/RestaurantEdit.tsx";
 
 
 export default function App() {
@@ -54,6 +55,7 @@ export default function App() {
                     <h1>No restaurants found</h1>
             }/>
           <Route path={"/restaurants/:id"} element={<RestaurantDetail/>}/>
+            <Route path={"/restaurants/:id/edit"} element={<RestaurantEdit/>}/>
             <Route path={"/restaurants/add"} element={<NewRestaurantForm/>}/>
       </Routes>
     </>

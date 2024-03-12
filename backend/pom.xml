@@ -53,6 +53,7 @@
     </dependencies>
 
     <build>
+        <finalName>foodelicious</finalName>
         <plugins>
             <plugin>
                 <groupId>org.jacoco</groupId>

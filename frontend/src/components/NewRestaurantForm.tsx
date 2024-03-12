@@ -72,8 +72,10 @@ export default function NewRestaurantForm() {
                                 number: ''
                             };
                         }
+                        //@ts-ignore
                         errors.address[currentError.path.split('.')[1]] = currentError.message;
                     } else {
+                        //@ts-ignore
                         errors[currentError.path] = currentError.message;
                     }
                 });

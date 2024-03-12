@@ -55,6 +55,7 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
             .then((response) => {
                     setIsEditable(false)
                     setRestaurant(response.data)
+                props.saveNewRestaurant((prevState) => [...prevState, response.data])
                 }
             )
             .catch((error) => console.log(error.message))

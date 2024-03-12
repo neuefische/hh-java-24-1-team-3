@@ -7,7 +7,6 @@ type RestaurantOverviewProps = {
 }
 export default function RestaurantOverview(props: Readonly<RestaurantOverviewProps>) {
 
-    props.fetchRestaurants()
 
     return (
         <div>

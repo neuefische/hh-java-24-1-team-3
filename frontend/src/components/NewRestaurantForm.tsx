@@ -1,15 +1,19 @@
-import {FormEvent, useState} from "react";
+import React, {FormEvent, useState} from "react";
 import "./NewRestaurantForm.css"
 import axios from "axios";
 import * as yup from "yup";
 import {useNavigate} from "react-router-dom";
-import {RestaurantAddress} from "../types/Restaurant.ts";
+import {Restaurant, RestaurantAddress} from "../types/Restaurant.ts";
 
 type Input = {
     title: string,
     city: string,
     cuisine: string,
     address: RestaurantAddress
+}
+
+type NewRestaurantFormProps = {
+    saveNewRestaurant: React.Dispatch<React.SetStateAction<Restaurant[]>>
 }
 
 const initialErrorState = {
@@ -34,7 +38,7 @@ const formDataSchema = yup.object().shape({
     })
 });
 
-export default function NewRestaurantForm() {
+export default function NewRestaurantForm(props: Readonly<NewRestaurantFormProps>) {
 
     const [formData, setFormData] = useState<Input>(initialFormValue)
     const [submittedFormData, setSubmittedFormData] = useState<Input[]>([])
@@ -88,7 +92,9 @@ export default function NewRestaurantForm() {
             .then((response) => {
                 console.log(response.data)
                 setSubmittedFormData([...submittedFormData, formData])
+                props.saveNewRestaurant((prevState) => [...prevState, response.data])
                 navigate("/")
+
             })
             .catch((error) => console.log(error.message))
     }

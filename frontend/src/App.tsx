@@ -54,7 +54,7 @@ export default function App() {
                     <h1>No restaurants found</h1>
             }/>
           <Route path={"/restaurants/:id"} element={<RestaurantDetail/>}/>
-            <Route path={"/restaurants/add"} element={<NewRestaurantForm/>}/>
+            <Route path={"/restaurants/add"} element={<NewRestaurantForm saveNewRestaurant={setRestaurants}/>}/>
       </Routes>
     </>
   )

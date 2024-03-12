@@ -1,10 +1,14 @@
 import {useNavigate, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Restaurant, RestaurantAddress} from "../types/Restaurant.ts";
 import axios from "axios";
 import "./RestaurantDetail.css"
 
-export default function RestaurantDetail() {
+type RestaurantDetailProps = {
+    saveNewRestaurant: React.Dispatch<React.SetStateAction<Restaurant[]>>,
+    restaurants: Restaurant[]
+}
+export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>) {
     const params = useParams()
     const [restaurantAddress, setRestaurantAddress] = useState<RestaurantAddress>({address: "", number: ""});
     const [restaurant, setRestaurant] = useState<Restaurant>({
@@ -23,8 +27,8 @@ export default function RestaurantDetail() {
     function deleteRestaurant(){
         if (window.confirm("Are you sure you want to delete this restaurant?"))
         axios.delete("/api/restaurants/" + params.id)
-            .then((response) => {
-                console.log(response.data)
+            .then(() => {
+                props.saveNewRestaurant(props.restaurants.filter((restaurant) => restaurant.id !== params.id))
                 navigate("/")
             })
             .catch((error) => console.log(error.message))

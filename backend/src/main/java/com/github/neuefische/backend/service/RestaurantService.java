@@ -37,10 +37,12 @@ public class RestaurantService {
        repo.delete(restaurant);
     }
 
-    public Restaurant editRestaurantById(String id, RestaurantDto restaurant) {
+    public Restaurant editRestaurantById(String id, RestaurantDto restaurantDto) {
         Restaurant restaurantToUpdate = getRestaurantById(id);
         return repo.save(restaurantToUpdate
-                .withTitle(restaurant.title())
-                .withCity(restaurant.city()));
+                .withCity(restaurantDto.city())
+                .withTitle(restaurantDto.title())
+                .withCuisine(restaurantDto.cuisine())
+                .withAddress(restaurantDto.address()));
     }
 }

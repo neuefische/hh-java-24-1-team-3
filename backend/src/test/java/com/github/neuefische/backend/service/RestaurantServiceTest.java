@@ -1,8 +1,8 @@
 package com.github.neuefische.backend.service;
 
 import com.github.neuefische.backend.model.Restaurant;
-import com.github.neuefische.backend.model.RestaurantDto;
 import com.github.neuefische.backend.model.RestaurantAddress;
+import com.github.neuefische.backend.model.RestaurantDto;
 import com.github.neuefische.backend.repository.RestaurantRepository;
 import org.junit.jupiter.api.Test;
 
@@ -92,8 +92,8 @@ class RestaurantServiceTest {
     @Test
     void editRestaurantById_whenCalledWithCityCologne_thenReturnUpdatedRestaurantWithCityCologne() {
         //GIVEN
-        RestaurantDto restaurant = new RestaurantDto("Hells Kitchen", "Cologne");
-        Restaurant expected = new Restaurant("1", "Hells Kitchen", "Cologne");
+        RestaurantDto restaurant = new RestaurantDto("Hells Kitchen", "Cologne", "Burger", new RestaurantAddress("Hofaue", "51"));
+        Restaurant expected = new Restaurant("1", "Hells Kitchen", "Cologne", "Burger", new RestaurantAddress("Hofaue", "51"));
         when(repo.findById("1")).thenReturn(Optional.of(expected));
         when(repo.save(expected)).thenReturn(expected);
 

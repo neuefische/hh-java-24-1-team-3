@@ -39,7 +39,7 @@ public void deleteRestaurantById(@PathVariable String id){
     }
 
     @PutMapping("/{id}")
-    public Restaurant editRestaurant(@PathVariable String id, @RequestBody RestaurantDto restaurant) {
+    public Restaurant editRestaurantById(@PathVariable String id, @RequestBody RestaurantDto restaurant) {
         return service.editRestaurantById(id, restaurant);
     }
 

@@ -122,24 +122,33 @@ class RestaurantControllerTest {
     @Test
     void editRestaurant_whenCalledWithCityCologne_thenReturnUpdatedRestaurantWithCityCologne() throws Exception {
         //GIVEN
-        repo.save(new Restaurant("1", "Okinii", "Hamburg"));
+        RestaurantAddress address = new RestaurantAddress("Hohenzollernring", "22");
+        repo.save(new Restaurant("1", "Okinii", "Hamburg", "Sushi", address));
 
         //
         mvc.perform(put("/api/restaurants/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                {
-                                "title" : "Okinii",
-                                "city" : "Cologne"
-                                }
-                                """))
+                                       {
+                                       "title" : "Okinii",
+                                       "city" : "Cologne",
+                                       "cuisine" : "Sushi",
+                                "address" : {
+                                    "address" : "Hohenzollernring",
+                                    "number" : "22"
+                                       }}
+                                       """))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
                         {
                         "id" : "1",
                         "title" : "Okinii",
-                        "city" : "Cologne"
-                        }
+                        "city" : "Cologne",
+                        "cuisine" : "Sushi",
+                         "address" : {
+                             "address" : "Hohenzollernring",
+                             "number" : "22"
+                        }}
                         """));
     }
 }

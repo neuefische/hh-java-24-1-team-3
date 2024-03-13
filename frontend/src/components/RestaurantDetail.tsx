@@ -50,12 +50,16 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
         setIsEditable(false)
     }
 
+    function updateRestaurants(restaurants: Restaurant[], newRestaurant: Restaurant): Restaurant[] {
+        return restaurants.map((restaurantOld) => (restaurantOld.id === params.id) ? newRestaurant : restaurantOld)
+    }
+
     function handleEditSave() {
         axios.put("/api/restaurants/" + params.id, formData)
             .then((response) => {
                     setIsEditable(false)
                     setRestaurant(response.data)
-                props.saveNewRestaurant((prevState) => [...prevState, response.data])
+                props.saveNewRestaurant((prevState) => updateRestaurants(prevState, response.data))
                 }
             )
             .catch((error) => console.log(error.message))

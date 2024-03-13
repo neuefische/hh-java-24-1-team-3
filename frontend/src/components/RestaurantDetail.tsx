@@ -197,10 +197,12 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
                             <h3>{restaurant.cuisine}</h3>
                             <h3>{restaurant.address.address}</h3>
                             <h3>{restaurant.address.number}</h3>
-                            <div id={"map"}></div>
+
                         </div>
                     )
+
                 }
+                {!isEditable && <div id={"map"}></div>}
             </div>
 
             <div className={"ButtonWrapper"}>

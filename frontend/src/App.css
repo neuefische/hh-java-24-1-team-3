@@ -6,6 +6,12 @@
     margin-bottom: 16px;
 }
 
+.HeaderTitle {
+    font-size: 4rem;
+    color: white;
+    margin-top: 7px;
+}
+
 .HeaderWrapper {
     display: flex;
     flex-direction: row;

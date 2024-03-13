@@ -14,7 +14,7 @@ export default function RestaurantCard(props: Readonly<RestaurantCardProps>) {
     return (
         <div className={"RestaurantCard"} onClick={navigateToDetail}>
             <h2 className={"RestaurantTitle"}>{props.restaurant.title}</h2>
-            <h3>{props.restaurant.city}</h3>
+            <h3 className={"RestaurantCity"}>{props.restaurant.city}</h3>
         </div>
     );
 }

@@ -1,5 +1,6 @@
 import {Restaurant} from "../types/Restaurant.ts";
 import RestaurantCard from "./RestaurantCard.tsx";
+import "./RestaurantOverview.css";
 
 type RestaurantOverviewProps = {
     restaurants: Restaurant[],
@@ -9,8 +10,9 @@ export default function RestaurantOverview(props: Readonly<RestaurantOverviewPro
 
 
     return (
-        <div>
-            {props.restaurants.map(restaurant => <RestaurantCard key={restaurant.id} restaurant={restaurant}/>)}
+        <div className={"restaurant-grid"}>
+            {props.restaurants.map(restaurant =>
+                <RestaurantCard key={restaurant.id} restaurant={restaurant}/>)}
         </div>
     );
 }

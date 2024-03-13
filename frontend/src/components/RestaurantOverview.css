@@ -1,0 +1,5 @@
+.restaurant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Drei Karten pro Reihe */
+    grid-gap: 20px; /* Abstand zwischen den Karten */
+}

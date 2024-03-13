@@ -36,7 +36,7 @@ export default function App() {
             <div className={"HeaderComponent"}>
                 <div className={"HeaderWrapper"}>
                     <Link to={"/"} className={"HeaderLink"}>
-                        <h1>Foodelicious</h1>
+                        <h1 className={"HeaderTitle"}>Foodelicious</h1>
                         <img className={"HeaderLogo"} src={"foodelicious.png"}
                              alt={"Bild von einem Burger mit Getränk"}/>
                     </Link>

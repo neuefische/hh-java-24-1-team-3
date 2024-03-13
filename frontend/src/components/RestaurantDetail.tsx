@@ -18,6 +18,13 @@ type Input = {
     address: RestaurantAddress
 }
 
+const myIcon = L.icon({
+    iconUrl: '../public/Pin.png',
+    iconSize: [38, 50],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76]
+});
+
 const initialFormValue = {title: "", city: "", cuisine: "", address: {address: "", number: ""}}
 
 export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>) {
@@ -114,7 +121,7 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
                 .then(response => {
                     if (response.data && response.data.length > 0) {
                         const {lat, lon} = response.data[0];
-                        L.marker([lat, lon]).addTo(map);
+                        L.marker([lat, lon], {icon: myIcon}).addTo(map);
                         map.setView([lat, lon], 13);
                         setMapInitialized(true);
                     } else {

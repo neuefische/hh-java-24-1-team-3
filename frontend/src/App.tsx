@@ -42,7 +42,7 @@ export default function App() {
                     </Link>
                 </div>
                 <div className={"HeaderNavigation"}>
-                    <Link to={"/restaurants/add"} className={"NavLink"}>Add Restaurant</Link>
+                    <Link to={"/restaurants/add"} className={"HeaderNavLink"}>Add Restaurant</Link>
                     <SearchComponent handleSearchText={setSearchText}/>
                 </div>
             </div>

@@ -5,6 +5,7 @@ import axios from "axios";
 import "./RestaurantDetail.css"
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import PinIcon from "../assets/Pin.png"
 
 type RestaurantDetailProps = {
     saveNewRestaurant: React.Dispatch<React.SetStateAction<Restaurant[]>>,
@@ -19,7 +20,7 @@ type Input = {
 }
 
 const myIcon = L.icon({
-    iconUrl: '../public/Pin.png',
+    iconUrl: PinIcon,
     iconSize: [38, 50],
     iconAnchor: [22, 94],
     popupAnchor: [-3, -76]

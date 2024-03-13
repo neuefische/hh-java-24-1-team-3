@@ -1,10 +1,23 @@
 .RestaurantCard {
-    border: 1px solid #09097b;
     border-radius: 8px;
     padding-left: 10px;
     margin: 24px 16px 0 16px;
-    background: beige;
+    background: rgba(255, 255, 255, 0.4);
     cursor: pointer;
+    width: calc(80.33% - 32px); /* Breite für drei Karten in einer Reihe abzüglich des Abstands */
+    height: 100%;
+    text-align: center;
+    transition: background 0.3s ease; /* Farbwechsel beim Hover-Effekt */
+}
+
+.RestaurantTitle {
+    font-size: 1.5rem;
+    margin-top: 10%;
+}
+
+.RestaurantCity {
+    font-size: 1.2rem;
+    margin-top: 5%;
 }
 
 .RestaurantCard:hover {

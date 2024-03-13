@@ -3,6 +3,8 @@ import React, {useEffect, useState} from "react";
 import {Restaurant, RestaurantAddress} from "../types/Restaurant.ts";
 import axios from "axios";
 import "./RestaurantDetail.css"
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 type RestaurantDetailProps = {
     saveNewRestaurant: React.Dispatch<React.SetStateAction<Restaurant[]>>,
@@ -23,6 +25,7 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
     const [restaurantAddress, setRestaurantAddress] = useState<RestaurantAddress>({address: "", number: ""});
     const [isEditable, setIsEditable] = useState<boolean>(false);
     const [formData, setFormData] = useState<Input>(initialFormValue)
+    const [mapInitialized, setMapInitialized] = useState(false)
     const [restaurant, setRestaurant] = useState<Restaurant>({
         id: "",
         title: "",
@@ -86,9 +89,43 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
 
     useEffect(
         fetchRestaurant,
+
         [params.id]
     )
 
+    useEffect(() => {
+        if (!mapInitialized && restaurant.address.address && restaurant.address.number) {
+            initializeMap()
+            setMapInitialized(true)
+        }
+    }, [restaurant]);
+
+
+    function initializeMap() {
+        if (!mapInitialized && restaurant.address && restaurant.address.address && restaurant.address.number) {
+            const map = L.map('map').setView([0, 0], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            const {address, number} = restaurant.address;
+            const fullAddress = `${address} ${number}`;
+            axios.get(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(fullAddress)}&format=json`)
+                .then(response => {
+                    if (response.data && response.data.length > 0) {
+                        const {lat, lon} = response.data[0];
+                        L.marker([lat, lon]).addTo(map);
+                        map.setView([lat, lon], 13);
+                        setMapInitialized(true);
+                    } else {
+                        console.error('Location not found');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching location:', error);
+                });
+        }
+    }
 
     return (
         <div className={"DetailRestaurantPage"}>
@@ -153,10 +190,12 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
                             <h3>{restaurant.cuisine}</h3>
                             <h3>{restaurant.address.address}</h3>
                             <h3>{restaurant.address.number}</h3>
+                            <div id={"map"}></div>
                         </div>
                     )
                 }
             </div>
+
             <div className={"ButtonWrapper"}>
                 <button className="HomeButton" onClick={navigateToHome}>Back</button>
                 <button className="EditButton"

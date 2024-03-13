@@ -64,3 +64,8 @@
 .EditButton:hover {
     background: #e1e1b1;
 }
+
+#map {
+    height: 200px;
+    width: 50%;
+}

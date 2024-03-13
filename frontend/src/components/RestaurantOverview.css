@@ -1,3 +1,7 @@
+.restaurant-grid-container {
+    margin-bottom: 50px;
+}
+
 .restaurant-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Drei Karten pro Reihe */

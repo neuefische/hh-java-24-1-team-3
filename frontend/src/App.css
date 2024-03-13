@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "MackScript";
+    src: url("../public/MarckScript-Regular.ttf") format("truetype");
+}
+
 .HeaderComponent {
     display: flex;
     flex-direction: column;
@@ -7,6 +12,7 @@
 }
 
 .HeaderTitle {
+    font-family: "MackScript", cursive;
     font-size: 4rem;
     color: white;
     margin-top: 7px;

@@ -19,6 +19,7 @@ jobs:
         working-directory: frontend
         run: |
           npm install
+          npm i --save-dev @types/leaflet
           npm run build
 
       - uses: actions/upload-artifact@v4

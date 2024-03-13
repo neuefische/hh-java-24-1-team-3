@@ -34,15 +34,17 @@ export default function App() {
     <>
         <header>
             <div className={"HeaderComponent"}>
-                <div className={"Wrapper"}>
-                    <Link to={"/"}>
-                        <img className={"Logo"} src={"foodelicious.png"}
-                             alt={"Bild von einem Burger mit Getränk"}/>
+                <div className={"HeaderWrapper"}>
+                    <Link to={"/"} className={"HeaderLink"}>
                         <h1>Foodelicious</h1>
+                        <img className={"HeaderLogo"} src={"foodelicious.png"}
+                             alt={"Bild von einem Burger mit Getränk"}/>
                     </Link>
-                    <Link to={"/restaurants/add"}>Add Restaurant</Link>
                 </div>
-                <SearchComponent handleSearchText={setSearchText}/>
+                <div className={"HeaderNavigation"}>
+                    <Link to={"/restaurants/add"} className={"NavLink"}>Add Restaurant</Link>
+                    <SearchComponent handleSearchText={setSearchText}/>
+                </div>
             </div>
         </header>
         <Routes>

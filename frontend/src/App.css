@@ -6,6 +6,18 @@
     margin-bottom: 16px;
 }
 
+footer {
+    margin-bottom: 0;
+}
+
+
+.FooterComponent {
+    display: flex;
+    align-items: center;
+    background: #e1e1b1;
+    padding-left: 16px;
+}
+
 .Wrapper {
     display: flex;
     flex-direction: row;

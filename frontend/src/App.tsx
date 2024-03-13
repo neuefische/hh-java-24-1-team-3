@@ -45,18 +45,30 @@ export default function App() {
                 <SearchComponent handleSearchText={setSearchText}/>
             </div>
         </header>
-        <Routes>
-            <Route path={"/"} element={
-                filteredRestaurants.length > 0
-                    ?
-                    <RestaurantOverview restaurants={filteredRestaurants} fetchRestaurants={fetchRestaurants}/>
-                    :
-                    <h1>No restaurants found</h1>
-            }/>
-            <Route path={"/restaurants/:id"}
-                   element={<RestaurantDetail saveNewRestaurant={setRestaurants} restaurants={restaurants}/>}/>
-            <Route path={"/restaurants/add"} element={<NewRestaurantForm saveNewRestaurant={setRestaurants}/>}/>
-      </Routes>
+        <main>
+            <Routes>
+                <Route path={"/"} element={
+                    filteredRestaurants.length > 0
+                        ?
+                        <RestaurantOverview restaurants={filteredRestaurants} fetchRestaurants={fetchRestaurants}/>
+                        :
+                        <h1>No restaurants found</h1>
+                }/>
+                <Route path={"/restaurants/:id"}
+                       element={<RestaurantDetail saveNewRestaurant={setRestaurants} restaurants={restaurants}/>}/>
+                <Route path={"/restaurants/add"} element={<NewRestaurantForm saveNewRestaurant={setRestaurants}/>}/>
+            </Routes>
+        </main>
+        <footer>
+            <div className={"FooterComponent"}>
+                <p>
+                    &copy;<br/>
+                    Eva-Maria Auer<br/>
+                    Jana Schmälzle<br/>
+                    Ingo Becker<br/>
+                </p>
+            </div>
+        </footer>
     </>
   )
 }

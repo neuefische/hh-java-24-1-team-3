@@ -1,8 +1,31 @@
-body,:root{
-  background-image: url("dinner-5537679_1920.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-blend-mode: soft-light;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
   margin: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+/* Stil für den Hauptbereich */
+main {
+    flex-grow: 1;
+    padding: 20px;
+    min-height: 100vH;
+}
+
+/* Stil für den Footer */
+footer {
+    background-color: #333;
+    padding: 20px;
+    margin-bottom: 0;
 }

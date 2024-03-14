@@ -100,41 +100,29 @@ export default function NewRestaurantForm(props: Readonly<NewRestaurantFormProps
     }
 
     return (
+        <div className={"Form-Wrapper"}>
         <form onSubmit={handleSubmit} >
-            <h3>New Restaurant</h3>
-            <label>Title:
+            <h3 className={"form-title"}>New Restaurant</h3>
                 <input
                     type={"text"}
                     value={formData.title}
                     onChange={event =>
                         setFormData({...formData, title: event.target.value})}
                     maxLength={100}
+                    placeholder={"Restaurant Name"}
                     required={true}
                 />
                 {errors.title && <p>{errors.title}</p>}
-            </label>
-            <label>City:
-                <input
-                    type={"text"}
-                    value={formData.city}
-                    onChange={event => setFormData({...formData, city: event.target.value})}
-                    maxLength={100}
-                    required={true}
-                />
-                {errors.city && <p>{errors.city}</p>}
-            </label>
-            <label>Cuisine:
                 <input
                     type={"text"}
                     value={formData.cuisine}
                     onChange={event => setFormData({...formData, cuisine: event.target.value})}
                     maxLength={50}
+                    placeholder={"Cuisine"}
                     required={true}
                 />
                 {errors.cuisine && <p>{errors.cuisine}</p>}
-            </label>
             <div className={"address-wrapper"}>
-                <label>Address:
                     <input
                         type={"text"}
                         value={formData.address.address}
@@ -143,11 +131,10 @@ export default function NewRestaurantForm(props: Readonly<NewRestaurantFormProps
                             address: {...formData.address, address: event.target.value}
                         })}
                         maxLength={100}
+                        placeholder={"Address"}
                         required={true}
                     />
                     {errors.address && <p>{errors.address.address}</p>}
-                </label>
-                <label>Number:
                     <input
                         type={"text"}
                         value={formData.address.number}
@@ -156,12 +143,22 @@ export default function NewRestaurantForm(props: Readonly<NewRestaurantFormProps
                             address: {...formData.address, number: event.target.value}
                         })}
                         maxLength={5}
+                        placeholder={"Number"}
                         required={true}
                     />
                     {errors.address && <p>{errors.address.number}</p>}
-                </label>
+                <input
+                    type={"text"}
+                    value={formData.city}
+                    onChange={event => setFormData({...formData, city: event.target.value})}
+                    maxLength={100}
+                    placeholder={"City"}
+                    required={true}
+                />
+                {errors.city && <p>{errors.city}</p>}
             </div>
-            <button type={"submit"}>Add restaurant</button>
+            <button className={"btn-submit"} type={"submit"}>Add restaurant</button>
         </form>
+        </div>
     );
 }

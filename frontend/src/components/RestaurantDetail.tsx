@@ -137,10 +137,10 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
 
     return (
         <div className={"DetailRestaurantPage"}>
-            <div className={"RestaurantDetail"}>
+            <div className={isEditable ? "RestaurantDetailEdit" : "RestaurantDetail"}>
                 {isEditable
                     ? (
-                        <div>
+                        <div className={"Edit-Form-Wrapper"}>
                             <input
                                 type={"text"}
                                 value={formData.title}
@@ -183,10 +183,12 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
                                 maxLength={5}
                                 required={true}
                             />
-                            <div>
-                                <button onClick={handleEditSave}>Save</button>
-                                <button onClick={handleCancel}>Cancel</button>
+                            <div className={"Edit-Button-Wrapper"}>
+                                <button className="btn-edit-save" onClick={handleEditSave}>Save</button>
+                                <button className="btn-edit-cancel" onClick={handleCancel}>Cancel</button>
+                                <button className="DeleteButton" onClick={deleteRestaurant}>Delete</button>
                             </div>
+
                         </div>
                     )
                     :
@@ -207,13 +209,13 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
                 {!isEditable && <div id={"map"}></div>}
             </div>
 
-            <div className={"ButtonWrapper"}>
+            {!isEditable && <div className={"ButtonWrapper"}>
                 <button className="HomeButton" onClick={navigateToHome}>Back</button>
                 <button className="EditButton"
                         onClick={handleEdit}>Edit
                 </button>
                 <button className="DeleteButton" onClick={deleteRestaurant}>Delete</button>
-            </div>
+            </div>}
         </div>
     );
 }

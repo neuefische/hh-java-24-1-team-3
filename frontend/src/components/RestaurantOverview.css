@@ -13,12 +13,6 @@
     .restaurant-grid {
         grid-template-columns: repeat(2, 1fr); /* Zwei Karten pro Reihe für kleinere Bildschirme */
     }
-
-    .restaurant-grid-container {
-        margin-bottom: 20px;
-        display: flex;
-        justify-content: center;
-    }
 }
 
 /* Media Query für noch kleinere Bildschirme */

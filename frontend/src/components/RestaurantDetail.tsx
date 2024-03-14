@@ -137,7 +137,6 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
 
     return (
         <div className={"DetailRestaurantPage"}>
-            <h1>Details:</h1>
             <div className={"RestaurantDetail"}>
                 {isEditable
                     ? (
@@ -192,12 +191,14 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
                     )
                     :
                     (
-                        <div>
-                            <h2>{restaurant.title}</h2>
-                            <h3>{restaurant.city}</h3>
+                        <div className={"DetailPage-Info-Wrapper"}>
+                            <h1 className={"DetailPage-Title"}>{restaurant.title}</h1>
                             <h3>{restaurant.cuisine}</h3>
-                            <h3>{restaurant.address.address}</h3>
-                            <h3>{restaurant.address.number}</h3>
+                            <div className={"DetailPage-Address-Wrapper"}>
+                                <h3>{restaurant.address.address}</h3>
+                                <h3>{restaurant.address.number}</h3>
+                            </div>
+                            <h3>{restaurant.city}</h3>
 
                         </div>
                     )

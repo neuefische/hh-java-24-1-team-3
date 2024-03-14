@@ -21,7 +21,7 @@ form {
     margin-top: 20px;
     padding: 10px;
     display: flex;
-    flex-flow: column wrap;
+    flex-direction: column;
     align-content: center;
     width: 50%;
     height: 300px;
@@ -111,7 +111,13 @@ input {
 }
 
 @media (width: 480px) {
-    .Form-Wrapper {
-        width: 100%;
+    .Content-Wrapper {
+        width: 10%;
     }
+
+    form {
+        flex-wrap: nowrap;
+        align-items: stretch;
+    }
+
 }

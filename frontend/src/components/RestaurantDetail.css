@@ -19,6 +19,64 @@
     max-width: 900px;
 }
 
+.RestaurantDetailEdit {
+    display: flex;
+    background: rgba(255, 255, 255, 0.5);
+    justify-content: center;
+    border-radius: 8px;
+    padding-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 24px;
+    height: 320px;
+    width: 60%;
+    max-width: 900px;
+}
+
+.Edit-Form-Wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 500px;
+}
+
+.Edit-Button-Wrapper {
+    display: flex;
+    justify-content: space-around;
+    gap: 5px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+
+}
+
+.btn-edit-save {
+    justify-self: center;
+    padding: 5px;
+    border-radius: 4px;
+    background: #064420;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-edit-save:hover {
+    background: #4CAF50;
+}
+
+.btn-edit-cancel {
+    padding: 5px;
+    border-radius: 4px;
+    background: #A0153E;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-edit-cancel:hover {
+    background-color: #FF204E;
+}
+
+
 .DetailPage-Info-Wrapper {
     display: flex;
     flex-direction: column;
@@ -62,8 +120,7 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
-    height: 40px;
-    border-radius: 8px;
+    border-radius: 4px;
     background: RGBA(6, 68, 32, 0.6);
     cursor: pointer;
     color: white;

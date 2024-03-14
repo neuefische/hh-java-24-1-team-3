@@ -7,3 +7,29 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Drei Karten pro Reihe */
     grid-gap: 20px; /* Abstand zwischen den Karten */
 }
+
+/* Media Query für kleinere Bildschirme */
+@media screen and (max-width: 900px) {
+    .restaurant-grid {
+        grid-template-columns: repeat(2, 1fr); /* Zwei Karten pro Reihe für kleinere Bildschirme */
+    }
+
+    .restaurant-grid-container {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* Media Query für noch kleinere Bildschirme */
+@media screen and (max-width: 600px) {
+    .restaurant-grid {
+        grid-template-columns: repeat(1, 1fr); /* Eine Karte pro Reihe für sehr kleine Bildschirme */
+    }
+
+    .restaurant-grid-container {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+}

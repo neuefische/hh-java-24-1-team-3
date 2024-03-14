@@ -42,45 +42,51 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 8px;
-    height: 32px;
+    padding: 10px;
+    height: 40px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.7);
+    background: RGBA(6, 68, 32, 0.6);
     cursor: pointer;
+    color: white;
+    border: none;
 }
 
 .HomeButton:hover{
-    background: #e1e1b1;
+    background: #4CAF50;
 }
 
 .DeleteButton {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 8px;
-    height: 32px;
+    padding: 10px;
+    height: 40px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.7);
+    background: RGBA(6, 68, 32, 0.6);
     cursor: pointer;
+    color: white;
+    border: none;
 }
 
 .DeleteButton:hover {
-    background: #e1e1b1;
+    background: #4CAF50;
 }
 
 .EditButton {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 8px;
-    height: 32px;
+    padding: 10px;
+    height: 40px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.7);
+    background: RGBA(6, 68, 32, 0.6);
     cursor: pointer;
+    color: white;
+    border: none;
 }
 
 .EditButton:hover {
-    background: #e1e1b1;
+    background: #4CAF50;
 }
 
 #map {

@@ -6,6 +6,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Drei Karten pro Reihe */
     grid-gap: 20px; /* Abstand zwischen den Karten */
+    justify-items: center;
 }
 
 /* Media Query für kleinere Bildschirme */
@@ -14,6 +15,7 @@
         grid-template-columns: repeat(2, 1fr); /* Zwei Karten pro Reihe für kleinere Bildschirme */
     }
 }
+
 
 /* Media Query für noch kleinere Bildschirme */
 @media screen and (max-width: 600px) {

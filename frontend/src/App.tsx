@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 import {Restaurant} from "./types/Restaurant.ts";
 import axios from "axios";
 import SearchComponent from "./components/SearchComponent.tsx";
+import Logo from "./assets/foodelicious.png"
 
 
 export default function App() {
@@ -37,7 +38,7 @@ export default function App() {
                 <div className={"HeaderWrapper"}>
                     <Link to={"/"} className={"HeaderLink"}>
                         <h1 className={"HeaderTitle"}>Foodelicious</h1>
-                        <img className={"HeaderLogo"} src={"foodelicious.png"}
+                        <img className={"HeaderLogo"} src={Logo}
                              alt={"Bild von einem Burger mit Getränk"}/>
                     </Link>
                 </div>

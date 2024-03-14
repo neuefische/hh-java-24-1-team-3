@@ -45,6 +45,10 @@ export default function NewRestaurantForm(props: Readonly<NewRestaurantFormProps
     const [errors, setErrors] = useState(initialErrorState)
     const navigate = useNavigate()
 
+    function handleCancel() {
+        navigate("/")
+    }
+
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         formDataSchema.validate(formData, {abortEarly: false})
@@ -100,9 +104,10 @@ export default function NewRestaurantForm(props: Readonly<NewRestaurantFormProps
     }
 
     return (
+        <div className={"Content-Wrapper"}>
         <div className={"Form-Wrapper"}>
-        <form onSubmit={handleSubmit} >
-            <h3 className={"form-title"}>New Restaurant</h3>
+            <form onSubmit={handleSubmit}>
+                <h3 className={"form-title"}>New Restaurant</h3>
                 <input
                     type={"text"}
                     value={formData.title}
@@ -122,7 +127,7 @@ export default function NewRestaurantForm(props: Readonly<NewRestaurantFormProps
                     required={true}
                 />
                 {errors.cuisine && <p>{errors.cuisine}</p>}
-            <div className={"address-wrapper"}>
+                <div className={"address-wrapper"}>
                     <input
                         type={"text"}
                         value={formData.address.address}
@@ -147,18 +152,20 @@ export default function NewRestaurantForm(props: Readonly<NewRestaurantFormProps
                         required={true}
                     />
                     {errors.address && <p>{errors.address.number}</p>}
-                <input
-                    type={"text"}
-                    value={formData.city}
-                    onChange={event => setFormData({...formData, city: event.target.value})}
-                    maxLength={100}
-                    placeholder={"City"}
-                    required={true}
-                />
-                {errors.city && <p>{errors.city}</p>}
-            </div>
-            <button className={"btn-submit"} type={"submit"}>Add restaurant</button>
-        </form>
+                    <input
+                        type={"text"}
+                        value={formData.city}
+                        onChange={event => setFormData({...formData, city: event.target.value})}
+                        maxLength={100}
+                        placeholder={"City"}
+                        required={true}
+                    />
+                    {errors.city && <p>{errors.city}</p>}
+                </div>
+                <button className={"btn-submit"} type={"submit"}>Add restaurant</button>
+            </form>
+            <button className={"btn-cancel"} onClick={handleCancel}>Cancel</button>
+        </div>
         </div>
     );
 }

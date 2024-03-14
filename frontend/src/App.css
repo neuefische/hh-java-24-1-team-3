@@ -52,3 +52,48 @@
     text-decoration: none;
     color: white;
 }
+
+
+@media (max-width: 600px) {
+    .HeaderComponent {
+        flex-direction: column;
+    }
+
+    .HeaderWrapper {
+        flex-direction: column;
+    }
+
+    .HeaderNavigation {
+        flex-direction: column;
+    }
+}
+
+/* Für Bildschirme mit einer Breite von 601px bis 900px */
+@media (min-width: 601px) and (max-width: 900px) {
+    .HeaderComponent {
+        flex-direction: row;
+    }
+
+    .HeaderWrapper {
+        flex-direction: row;
+    }
+
+    .HeaderNavigation {
+        flex-direction: row;
+    }
+}
+
+/* Für Bildschirme mit einer Breite von mehr als 900px */
+@media (min-width: 901px) {
+    .HeaderComponent {
+        flex-direction: column;
+    }
+
+    .HeaderWrapper {
+        flex-direction: row;
+    }
+
+    .HeaderNavigation {
+        flex-direction: row;
+    }
+}

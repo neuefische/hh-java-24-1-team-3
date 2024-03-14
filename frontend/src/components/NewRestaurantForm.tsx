@@ -127,8 +127,8 @@ export default function NewRestaurantForm(props: Readonly<NewRestaurantFormProps
                     required={true}
                 />
                 {errors.cuisine && <p>{errors.cuisine}</p>}
-                <div className={"address-wrapper"}>
-                    <input
+
+                <input
                         type={"text"}
                         value={formData.address.address}
                         onChange={event => setFormData({
@@ -161,7 +161,6 @@ export default function NewRestaurantForm(props: Readonly<NewRestaurantFormProps
                         required={true}
                     />
                     {errors.city && <p>{errors.city}</p>}
-                </div>
                 <button className={"btn-submit"} type={"submit"}>Add restaurant</button>
             </form>
             <button className={"btn-cancel"} onClick={handleCancel}>Cancel</button>

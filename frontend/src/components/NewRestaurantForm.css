@@ -52,14 +52,13 @@ input {
     min-width: 50px;
     padding: 5px;
     border-radius: 4px;
-    background: #064420;
-    color: white;
+    background: #e4efe7;
     border: none;
     cursor: pointer;
 }
 
 .btn-submit:hover {
-    background: #4CAF50;
+    background: #b9b4c7;
 }
 
 

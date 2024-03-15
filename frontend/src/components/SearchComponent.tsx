@@ -11,8 +11,9 @@ export default function SearchComponent(props: Readonly<SearchComponentProps>) {
     }
 
     return (
-        <div className="search-box">
-            <input onChange={handleInputOnChange} type="text" className="input-search" placeholder="Type to Search..."/>
-        </div>
+
+        <input onChange={handleInputOnChange} type="text" className="input-search" maxLength={100}
+               placeholder="Type to Search..."/>
+
     );
 }

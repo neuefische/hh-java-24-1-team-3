@@ -50,29 +50,27 @@
     justify-self: center;
     padding: 5px;
     border-radius: 4px;
-    background: #064420;
-    color: white;
+    background: #e4efe7;
     border: none;
     cursor: pointer;
     width: 60px;
 }
 
 .btn-edit-save:hover {
-    background: #4CAF50;
+    background: #b9b4c7;
 }
 
 .btn-edit-cancel {
     padding: 5px;
     border-radius: 4px;
-    background: #064420;
-    color: white;
+    background: #e4efe7;
     border: none;
     cursor: pointer;
     width: 60px;
 }
 
 .btn-edit-cancel:hover {
-    background-color: #FF204E;
+    background: #b9b4c7;
 }
 
 
@@ -103,15 +101,14 @@
     padding: 10px;
     height: 40px;
     border-radius: 8px;
-    background: RGBA(6, 68, 32, 0.6);
+    background: #e4efe7;
     cursor: pointer;
-    color: white;
     border: none;
     width: 60px;
 }
 
 .HomeButton:hover{
-    background: #4CAF50;
+    background: #b9b4c7;
 }
 
 .DeleteButton {
@@ -138,15 +135,14 @@
     padding: 10px;
     height: 40px;
     border-radius: 8px;
-    background: RGBA(6, 68, 32, 0.6);
+    background: #e4efe7;
     cursor: pointer;
-    color: white;
     border: none;
     width: 60px;
 }
 
 .EditButton:hover {
-    background: #4CAF50;
+    background: #b9b4c7;
 }
 
 #map {

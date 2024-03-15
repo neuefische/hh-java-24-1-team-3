@@ -13,5 +13,4 @@ body {
 header {
   display: flex;
   justify-content: center;
-  background: RGBA(6, 68, 32, 0.6);
 }

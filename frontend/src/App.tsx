@@ -54,7 +54,7 @@ export default function App() {
                     ?
                     <RestaurantOverview restaurants={filteredRestaurants} fetchRestaurants={fetchRestaurants}/>
                     :
-                    <h1>No restaurants found</h1>
+                    <h1 className={"notfoundtag"}>No restaurants found</h1>
             }/>
             <Route path={"/restaurants/:id"}
                    element={<RestaurantDetail saveNewRestaurant={setRestaurants} restaurants={restaurants}/>}/>

@@ -204,14 +204,12 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
                                 </div>
                                 <h3>{restaurant.city}</h3>
                                 {!isEditable &&
-                                    <>
                                         <div className={"ButtonWrapper"}>
                                             <button className="HomeButton" onClick={navigateToHome}>Back</button>
                                             <button className="EditButton"
                                                     onClick={handleEdit}>Edit
                                             </button>
                                         </div>
-                                    </>
                                 }
                             </div>
                             <div id={"map"}></div>

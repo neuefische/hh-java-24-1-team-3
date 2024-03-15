@@ -201,21 +201,21 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
                                 <h3>{restaurant.address.number}</h3>
                             </div>
                             <h3>{restaurant.city}</h3>
-
+                            {!isEditable && <div className={"ButtonWrapper"}>
+                                <button className="HomeButton" onClick={navigateToHome}>Back</button>
+                                <button className="EditButton"
+                                        onClick={handleEdit}>Edit
+                                </button>
+                            </div>}
                         </div>
-                    )
 
+                    )
                 }
                 {!isEditable && <div id={"map"}></div>}
+
             </div>
 
-            {!isEditable && <div className={"ButtonWrapper"}>
-                <button className="HomeButton" onClick={navigateToHome}>Back</button>
-                <button className="EditButton"
-                        onClick={handleEdit}>Edit
-                </button>
-                <button className="DeleteButton" onClick={deleteRestaurant}>Delete</button>
-            </div>}
+
         </div>
     );
 }

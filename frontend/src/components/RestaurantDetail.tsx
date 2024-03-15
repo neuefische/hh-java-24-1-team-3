@@ -59,6 +59,7 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
 
     function handleCancel() {
         setIsEditable(false)
+        setMapInitialized(false)
     }
 
     function updateRestaurants(restaurants: Restaurant[], newRestaurant: Restaurant): Restaurant[] {
@@ -71,6 +72,7 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
                     setIsEditable(false)
                     setRestaurant(response.data)
                 props.saveNewRestaurant((prevState) => updateRestaurants(prevState, response.data))
+                    setMapInitialized(false)
                 }
             )
             .catch((error) => console.log(error.message))
@@ -97,7 +99,6 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
 
     useEffect(
         fetchRestaurant,
-
         [params.id]
     )
 
@@ -106,7 +107,7 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
             initializeMap()
             setMapInitialized(true)
         }
-    }, [restaurant]);
+    }, [restaurant, handleCancel, handleEditSave]);
 
 
     function initializeMap() {
@@ -193,25 +194,30 @@ export default function RestaurantDetail(props: Readonly<RestaurantDetailProps>)
                     )
                     :
                     (
-                        <div className={"DetailPage-Info-Wrapper"}>
-                            <h1 className={"DetailPage-Title"}>{restaurant.title}</h1>
-                            <h3>{restaurant.cuisine}</h3>
-                            <div className={"DetailPage-Address-Wrapper"}>
-                                <h3>{restaurant.address.address}</h3>
-                                <h3>{restaurant.address.number}</h3>
+                        <>
+                            <div className={"DetailPage-Info-Wrapper"}>
+                                <h1 className={"DetailPage-Title"}>{restaurant.title}</h1>
+                                <h3>{restaurant.cuisine}</h3>
+                                <div className={"DetailPage-Address-Wrapper"}>
+                                    <h3>{restaurant.address.address}</h3>
+                                    <h3>{restaurant.address.number}</h3>
+                                </div>
+                                <h3>{restaurant.city}</h3>
+                                {!isEditable &&
+                                    <>
+                                        <div className={"ButtonWrapper"}>
+                                            <button className="HomeButton" onClick={navigateToHome}>Back</button>
+                                            <button className="EditButton"
+                                                    onClick={handleEdit}>Edit
+                                            </button>
+                                        </div>
+                                    </>
+                                }
                             </div>
-                            <h3>{restaurant.city}</h3>
-                            {!isEditable && <div className={"ButtonWrapper"}>
-                                <button className="HomeButton" onClick={navigateToHome}>Back</button>
-                                <button className="EditButton"
-                                        onClick={handleEdit}>Edit
-                                </button>
-                            </div>}
-                        </div>
-
+                            <div id={"map"}></div>
+                        </>
                     )
                 }
-                {!isEditable && <div id={"map"}></div>}
 
             </div>
 

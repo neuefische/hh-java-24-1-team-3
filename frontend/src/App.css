@@ -32,6 +32,7 @@
     color: white;
 }
 
+
 .HeaderLogo {
     cursor: pointer;
     width: 40px;
@@ -42,15 +43,22 @@
 .HeaderNavigation {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
     padding: 16px;
     gap: 16px;
 }
 
 .HeaderNavLink {
+    background: #e4efe7;
+    border-radius: 4px;
+    padding: 5px;
     text-decoration: none;
-    color: white;
+    color: black;
+}
+
+.HeaderNavLink:hover {
+    background: #b9b4c7;
 }
 
 
